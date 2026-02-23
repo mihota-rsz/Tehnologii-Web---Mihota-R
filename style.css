@@ -1,0 +1,223 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.sticky {
+    position: sticky;
+    top: 0;
+    background-color: purple;
+    width: 100%;
+    z-index: 9999;
+}
+.phone {
+    padding: 10px;
+}
+
+.phoneitems {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    width: 45px;
+}
+
+.menu {
+    width: 30px;
+}
+
+.phonetext {
+    text-align: center;
+    flex: 1;
+    color:white;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.edition {
+    font-size: 12px;
+}
+
+.hero {
+    background-image: url("img/cybercity.png");
+    background-size: cover;
+    background-position: center;
+    height: 90vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+}
+
+.overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    width: 90%;
+}
+
+.overlay h1 {
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.overlay p {
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+button {
+    background-color: purple;
+    border: none;
+    padding: 12px 25px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.regulament {
+    background-color: purple;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.regulament h2 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color:white;
+}
+
+.regulament p {
+    font-size: 14px;
+    margin-bottom: 20px;
+    color:white;
+}
+
+.linie {
+    width: 60%;
+    height: 1px;
+    background-color: white;
+    margin: 30px auto;
+}
+
+footer {
+    background-color:#03002e;
+    color: white;
+    text-align: center;
+    padding: 10px 10px;
+}
+
+footer img {
+    width: 150px;
+}
+
+.desktop {
+    display: none;
+}
+
+@media screen and (min-width: 769px) {
+
+.phone {
+    display: none;
+}
+
+.desktop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px;
+    background-color: purple;
+}
+
+.desktopstuff {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color:white;
+}
+
+.desktopitems a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 25px;
+}
+
+.hero {
+    background-image: url("img/cybercity.png");
+    background-size: cover;
+    background-position: center;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content:left;
+}
+
+.overlay {
+    background: rgba(0,0,0,0.65);
+    color: white;
+    padding: 30px;
+    width: 45%;
+    margin-left: 100px;
+    text-align:left;
+}
+
+.overlay h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.overlay p {
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+button {
+    background-color: purple;
+    border: none;
+    padding: 14px 35px;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.igicon {
+    width: 22px;
+    vertical-align: middle;
+}
+
+.regulament {
+    background-color: purple;
+    padding: 40px 20px;
+    text-align: left;
+}
+
+.calendar {
+    text-align:center;
+}
+
+footer {
+    background-color:#03002e;
+    color: white;
+    text-align: right;
+    padding:10px 10px;
+}
+
+footer img {
+    width: 150px;
+}
+
+}
