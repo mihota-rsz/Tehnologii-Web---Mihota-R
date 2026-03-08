@@ -1,0 +1,281 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.sticky {
+    position: sticky;
+    top: 0;
+    background-color: #393185;
+    width: 100%;
+    z-index: 9999;
+}
+
+.phone {
+    padding: 10px;
+}
+
+.phoneitems {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    width: 45px;
+}
+
+.menu {
+    width: 30px;
+}
+
+.phonetext {
+    text-align: center;
+    flex: 1;
+    color: white;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.edition {
+    font-size: 12px;
+}
+
+.hero {
+    background-image: url("images/poza.png");
+    background-size: cover;
+    background-position: center;
+    height: 90vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    width: 90%;
+}
+
+.overlay h1 {
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.overlay p {
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+button {
+    background-color: #393185;
+    border: none;
+    padding: 12px 25px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #4f47a3;
+}
+
+.more {
+    background-color: #393185;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.more h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: white;
+}
+
+.more p {
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.linie {
+    width: 60%;
+    height: 1px;
+    background-color: white;
+    margin: 30px auto;
+}
+
+#resources-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.resource-card {
+    background: white;
+    color: black;
+    padding: 20px;
+    width: 90%;
+    border-radius: 8px;
+    text-align: left;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.resource-card h3 {
+    margin-bottom: 10px;
+    color:#393185
+}
+
+.resource-card p {
+    margin-bottom: 6px;
+    color:#4f47a3
+}
+
+#tags-list {
+    list-style: none;
+    padding: 0;
+}
+
+#tags-list li {
+    display: inline-block;
+    background: white;
+    color: #393185;
+    padding: 8px 12px;
+    margin: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+footer {
+    background-color: #03002e;
+    color: white;
+    text-align: center;
+    padding: 10px 10px;
+}
+
+.desktop {
+    display: none;
+}
+
+.phonemenu {
+    display: none;
+    flex-direction: column;
+    background-color: #393185;
+    padding: 15px;
+}
+
+.phonemenu a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 0;
+    font-weight: bold;
+}
+
+.phonemenu a:hover {
+    text-decoration: underline;
+}
+
+.phonemenu.active {
+    display: flex;
+}
+
+@media screen and (min-width: 769px) {
+
+.phone {
+    display: none;
+}
+
+.desktop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px;
+    background-color: #393185;
+}
+
+.desktopstuff {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: white;
+}
+
+.desktopitems a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 25px;
+}
+
+.desktopitems a:hover {
+    text-decoration: underline;
+}
+
+.hero {
+    background-image: url("images/poza.png");
+    background-size: cover;
+    background-position: center;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.overlay {
+    background: rgba(0,0,0,0.65);
+    color: white;
+    padding: 30px;
+    width: 45%;
+    margin-left: 100px;
+    text-align: left;
+}
+
+.overlay h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.overlay p {
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+button {
+    padding: 14px 35px;
+    font-size: 16px;
+}
+
+#resources-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.resource-card {
+    width: 300px;
+}
+
+.more {
+    text-align: center;
+}
+
+footer {
+    text-align: right;
+    padding: 10px 20px;
+}
+
+}

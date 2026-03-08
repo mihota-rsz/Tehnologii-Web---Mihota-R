@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Campus Info Hub</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <header class="sticky">
+        <nav class="phone">
+            <div class="phoneitems">
+                <img src="images/logo.png" class="logo"/>
+                <div class="phonetext">
+                    <p class="title">Campus Info Hub</p>
+                </div>
+                <img src="images/menu.png" class="menu" id="menuButton" />
+            </div>
+            <div class="phonemenu" id="phonemenu">
+                <a href="index.html">HOME</a>
+                <a href="pages/library.html">BIBLIOTECA</a>
+                <a href="pages/cafeteria.html">CANTINA</a>
+                <a href="pages/events.html">EVENIMENTE</a>
+                <a href="https://uab.ro" target="_blank">UAB</a>
+            </div>
+        </nav>
+    </header>
+    <nav class="desktop">
+        <div class="desktopstuff">
+            <img src="images/logo.png" class="logo" />
+            <div>
+                <p class="title">Campus Info Hub</p>
+            </div>
+        </div>
+        <div class="desktopitems">
+            <a href="index.html">HOME</a>
+            <a href="pages/library.html">BIBLIOTECA</a>
+            <a href="pages/cafeteria.html">CANTINA</a>
+            <a href="pages/events.html">EVENIMENTE</a>
+            <a href="https://uab.ro" target="_blank">UAB</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="overlay">
+            <h1>Campus Info Hub</h1>
+            <p>
+                Platformă pentru studenți unde poți găsi informații despre resursele
+                din campus: biblioteca, cantina și evenimentele organizate de
+                universitate.
+            </p>
+            <p>
+                Descoperă locuri de studiu, spații pentru relaxare și activități
+                organizate pentru studenți.
+            </p>
+            <button id="scrollButton">VEZI RESURSE</button>
+        </div>
+    </section>
+
+    <section class="more" id="resources">
+        <h2>Resurse din campus</h2>
+        <p>Mai jos sunt afișate resursele disponibile în campus.</p>
+        <div class="linie"></div>
+        <div id="resources-container"></div>
+        <div class="linie"></div>
+    </section>
+    <section class="more">
+        <h2>Filtrează resursele</h2>
+        <p>Poți vedea doar resursele dedicate studiului.</p>
+        <button onclick="filterStudy()">Locuri de studiu</button>
+        <button onclick="showAll()">Toate resursele</button>
+    </section>
+    <section class="more">
+        <h2>Categorii / Tags</h2>
+        <p>Fiecare resursă din campus este asociată cu anumite categorii.</p>
+        <ul id="tags-list"></ul>
+    </section>
+
+    <footer>
+        <p>© 2026 Campus Info Hub</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
