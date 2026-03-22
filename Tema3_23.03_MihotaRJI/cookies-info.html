@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Cookies Info</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <h1>Informații Cookies & Storage</h1>
+
+  <h2>Cookies</h2>
+  <p><strong>document.cookie:</strong></p>
+  <pre id="rawCookies"></pre>
+  <table id="cookiesTable"></table>
+
+  <h2>localStorage</h2>
+  <pre id="localJson"></pre>
+  <table id="localTable"></table>
+
+  <h2>sessionStorage</h2>
+  <pre id="sessionJson"></pre>
+  <table id="sessionTable"></table>
+
+  <h2>Comparație</h2>
+  <table border="1">
+    <tr>
+      <th></th>
+      <th>Cookies</th>
+      <th>localStorage</th>
+      <th>sessionStorage</th>
+    </tr>
+    <tr>
+      <td>Capacitate</td>
+      <td>~4KB</td>
+      <td>~5MB</td>
+      <td>~5MB</td>
+    </tr>
+    <tr>
+      <td>Expirare</td>
+      <td>Manual (sau la închidere)</td>
+      <td>Permanent</td>
+      <td>La închiderea tabului</td>
+    </tr>
+    <tr>
+      <td>Trimis la server?</td>
+      <td>Da</td>
+      <td>Nu</td>
+      <td>Nu</td>
+    </tr>
+    <tr>
+      <td>Accesibil din</td>
+      <td>Toate tab-urile</td>
+      <td>Toate tab-urile</td>
+      <td>Doar tab curent</td>
+    </tr>
+  </table>
+
+  <script src="js/cookies.js"></script>
+  <script src="js/storage.js"></script>
+
+  <script>
+    document.getElementById("rawCookies").innerText = document.cookie;
+
+    let cookies = CookieManager.getAll();
+    let cookiesTable = document.getElementById("cookiesTable");
+
+    cookiesTable.innerHTML =
+      `<tr>
+    <th>Nume</th>
+    <th>Valoare</th>
+    <th>Lungime</th>
+    <th>Șterge</th>
+</tr>`;
+
+    for (let key in cookies) {
+      let value = cookies[key];
+
+      cookiesTable.innerHTML +=
+        `<tr>
+        <td>${key}</td>
+        <td>${value}</td>
+        <td>${value.length}</td>
+        <td><button onclick="deleteCookie('${key}')">X</button></td>
+    </tr>`;
+    }
+
+    function deleteCookie(name) {
+      CookieManager.delete(name);
+      location.reload();
+    }
+
+    let localData = StorageManager.getAllLocal();
+
+    document.getElementById("localJson").innerText =
+      JSON.stringify(localData, null, 2);
+
+    let localTable = document.getElementById("localTable");
+
+    localTable.innerHTML =
+      `<tr>
+    <th>Cheie</th>
+    <th>Valoare</th>
+    <th>Dimensiune</th>
+    <th>Șterge</th>
+</tr>`;
+
+    for (let key in localData) {
+      let value = JSON.stringify(localData[key]);
+
+      localTable.innerHTML +=
+        `<tr>
+        <td>${key}</td>
+        <td>${value}</td>
+        <td>${value.length}</td>
+        <td><button onclick="deleteLocal('${key}')">X</button></td>
+    </tr>`;
+    }
+
+    function deleteLocal(key) {
+      StorageManager.removeLocal(key);
+      location.reload();
+    }
+
+    let sessionData = StorageManager.getAllSession();
+
+    document.getElementById("sessionJson").innerText =
+      JSON.stringify(sessionData, null, 2);
+
+    let sessionTable = document.getElementById("sessionTable");
+
+    sessionTable.innerHTML =
+      `<tr>
+    <th>Cheie</th>
+    <th>Valoare</th>
+    <th>Dimensiune</th>
+    <th>Șterge</th>
+    </tr>`;
+
+    for (let key in sessionData) {
+      let value = JSON.stringify(sessionData[key]);
+
+      sessionTable.innerHTML +=
+        `<tr>
+        <td>${key}</td>
+        <td>${value}</td>
+        <td>${value.length}</td>
+        <td><button onclick="deleteSession('${key}')">X</button></td>
+        </tr>`;
+    }
+
+    function deleteSession(key) {
+      StorageManager.removeSession(key);
+      location.reload();
+    }
+
+  </script>
+
+</body>
+
+</html>

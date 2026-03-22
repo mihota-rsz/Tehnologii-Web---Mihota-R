@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Preferințe</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h1>Setări Preferințe</h1>
+
+    <form id="prefForm">
+
+        <label>Nume utilizator:</label><br>
+        <input type="text" id="username"><br><br>
+
+        <label>Tema:</label><br>
+        <select id="theme">
+            <option value="light">Luminos</option>
+            <option value="dark">Întunecat</option>
+        </select><br><br>
+
+        <label>Limba:</label><br>
+        <select id="language">
+            <option value="Romana">Română</option>
+            <option value="English">English</option>
+            <option value="Français">Français</option>
+        </select><br><br>
+
+        <label>Dimensiune font:</label><br>
+        <select id="fontSize">
+            <option value="14">14px</option>
+            <option value="16">16px</option>
+            <option value="18">18px</option>
+            <option value="20">20px</option>
+        </select><br><br>
+
+        <button type="submit">Salvează</button>
+
+    </form>
+
+    <p id="message"></p>
+    <script src="js/cookies.js"></script>
+    <script src="js/storage.js"></script>
+
+    <script>
+
+        document.getElementById("username").value =
+            CookieManager.get("username") || "";
+
+        document.getElementById("theme").value =
+            CookieManager.get("theme") || "light";
+
+        document.getElementById("language").value =
+            StorageManager.getLocal("language") || "Romana";
+
+        document.getElementById("fontSize").value =
+            StorageManager.getLocal("fontSize") || "16";
+
+        document.body.className =
+            CookieManager.get("theme") || "light";
+
+        document.getElementById("prefForm").onsubmit = function (e) {
+            e.preventDefault();
+
+            let username = document.getElementById("username").value;
+            let theme = document.getElementById("theme").value;
+            let language = document.getElementById("language").value;
+            let fontSize = document.getElementById("fontSize").value;
+
+            CookieManager.set("username", username);
+            CookieManager.set("theme", theme);
+            StorageManager.setLocal("language", language);
+            StorageManager.setLocal("fontSize", fontSize);
+
+            document.getElementById("message").innerText = "Preferințe salvate!";
+
+            setTimeout(() => {
+                window.location.href = "index.html";
+            }, 1500);
+        };
+
+    </script>
+
+</body>
+</html>

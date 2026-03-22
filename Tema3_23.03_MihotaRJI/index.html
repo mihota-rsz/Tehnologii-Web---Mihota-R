@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Pagina Principală</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1 id="welcome"></h1>
+    <nav>
+        <a href="preferences.html">Preferințe</a> |
+        <a href="cookies-info.html">Cookies Info</a> |
+        <a href="login.html">Login</a>
+    </nav>
+    <hr>
+    <h2>Cookie-uri</h2>
+    <table id="cookiesTable"></table>
+    
+    <h2>Local Storage</h2>
+    <table id="localTable"></table>
+
+    <h2>Session Storage</h2>
+    <table id="sessionTable"></table>
+    <br>
+    <button onclick="clearAll()">Șterge Tot</button>
+    <script src="js/cookies.js"></script>
+    <script src="js/storage.js"></script>
+
+    <script>
+        let username = CookieManager.get("username") || "Vizitator";
+
+        let visits = parseInt(CookieManager.get("visits")) || 0;
+        visits++;
+        CookieManager.set("visits", visits);
+
+        document.getElementById("welcome").innerText =
+            `Bun venit ${username}! Ai vizitat pagina de ${visits} ori.`;
+
+        let theme = CookieManager.get("theme") || "light";
+        document.body.className = theme;
+
+        function createTable(data, tableId) {
+            let table = document.getElementById(tableId);
+
+            table.innerHTML = `<tr>
+                <th>Cheie</th>
+                <th>Valoare</th>
+            </tr>`;
+            for (let key in data) {
+                table.innerHTML += `
+            <tr>
+                <td>${key}</td>
+                <td>${data[key]}</td>
+            </tr>`;
+            }
+        }
+
+        createTable(CookieManager.getAll(), "cookiesTable");
+
+        createTable(StorageManager.getAllLocal(), "localTable");
+
+        createTable(StorageManager.getAllSession(), "sessionTable");
+
+        function clearAll() {
+            CookieManager.deleteAll();
+            StorageManager.clearLocal();
+            StorageManager.clearSession();
+
+            alert("Tot a fost șters!");
+            location.reload();
+        }
+    </script>
+</body>
+</html>

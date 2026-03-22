@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Autentificare</h1>
+
+    <form id="loginForm">
+
+        <label>Username:</label><br>
+        <input type="text" id="username"><br><br>
+
+        <label>Parolă:</label><br>
+        <input type="password" id="password"><br><br>
+
+        <label>
+            <input type="checkbox" id="remember"> Ține-mă minte
+        </label><br><br>
+
+        <button type="submit">Login</button>
+
+    </form>
+    <p id="message"></p>
+    <p>Nu ai cont? <a href="register.html">Înregistrează-te</a></p>
+    <script src="js/storage.js"></script>
+    <script>
+        let users = StorageManager.getLocal("users");
+
+        if (!users) {
+            const defaultUsers = [
+                { id: 1, username: 'admin', password: 'password', email: 'admin@example.com' },
+                { id: 2, username: 'student', password: 'student123', email: 'student@example.com' }
+            ];
+
+            StorageManager.setLocal("users", defaultUsers);
+            users = defaultUsers;
+        }
+
+        let rememberedUser = StorageManager.getLocal("rememberedUser");
+        if (rememberedUser) {
+            document.getElementById("username").value = rememberedUser;
+            document.getElementById("remember").checked = true;
+        }
+
+        document.getElementById("loginForm").onsubmit = function (e) {
+            e.preventDefault();
+
+            let username = document.getElementById("username").value;
+            let password = document.getElementById("password").value;
+            let remember = document.getElementById("remember").checked;
+
+            let users = StorageManager.getLocal("users");
+
+            let user = users.find(u =>
+                u.username === username &&
+                u.password === password
+            );
+
+            if (user) {
+                if (remember) {
+                    StorageManager.setLocal("rememberedUser", username);
+                } else {
+                    StorageManager.removeLocal("rememberedUser");
+                }
+                let session = {
+                    userId: user.id,
+                    username: user.username,
+                    email: user.email,
+                    loginTime: Date.now(),
+                    sessionId: Math.random().toString(36).substring(2)
+                };s
+                StorageManager.setSession("session", session);
+                window.location.href = "dashboard.html";
+            } else {
+                document.getElementById("message").innerText =
+                    "Username sau parolă greșită!";
+            }
+        };
+    </script>
+
+</body>
+</html>

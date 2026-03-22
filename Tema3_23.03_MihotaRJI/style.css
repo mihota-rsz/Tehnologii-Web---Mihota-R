@@ -1,0 +1,104 @@
+body {
+    font-family: "Segoe UI", sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+a {
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+label {
+    font-weight: bold;
+}
+
+input, select {
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+    max-width: 300px;
+}
+
+button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+}
+
+td, th {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+
+tr:hover {
+    background-color: #f2f2f2;
+}
+
+.light {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.dark {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+.dark table {
+    color: white;
+}
+
+.dark th {
+    background-color: #444;
+}
+
+.dark tr:hover {
+    background-color: #333;
+}
+
+.alert-success {
+    color: green;
+    font-weight: bold;
+}
+
+.alert-error {
+    color: red;
+    font-weight: bold;
+}
+
+.btn-danger {
+    background-color: red;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: darkred;
+}

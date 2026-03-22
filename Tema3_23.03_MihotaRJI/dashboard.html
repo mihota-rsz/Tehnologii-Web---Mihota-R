@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Dashboard</h1>
+    <div id="sessionInfo"></div>
+    <h3>Durata sesiune: <span id="sessionTime">0</span> sec</h3>
+    <h2>Date brute sessionStorage</h2>
+    <pre id="rawSession"></pre>
+    <br>
+
+    <a href="cart.html">Mergi la Coș</a><br><br>
+    <a href="dashboard.html" target="_blank">
+        Deschide în tab nou (test sessionStorage)
+    </a><br><br>
+
+    <button onclick="logout()">Deconectare</button>
+
+    <script src="js/storage.js"></script>
+    <script>
+        let session = StorageManager.getSession("session");
+
+        if (!session) {
+            window.location.href = "login.html";
+        }
+
+        let loginDate = new Date(session.loginTime);
+
+        document.getElementById("sessionInfo").innerHTML =
+            `<p><strong>Session ID:</strong> ${session.sessionId}</p>
+            <p><strong>Username:</strong> ${session.username}</p>
+            <p><strong>Email:</strong> ${session.email}</p>
+            <p><strong>Login time:</strong> ${loginDate.toLocaleString()}</p>`;
+
+        setInterval(() => {
+            let seconds = Math.floor((Date.now() - session.loginTime) / 1000);
+            document.getElementById("sessionTime").innerText = seconds;
+        }, 1000);
+
+        document.getElementById("rawSession").innerText =
+            JSON.stringify(StorageManager.getAllSession(), null, 2);
+
+        function logout() {
+            StorageManager.clearSession();
+            window.location.href = "login.html";
+        }
+    </script>
+</body>
+</html>

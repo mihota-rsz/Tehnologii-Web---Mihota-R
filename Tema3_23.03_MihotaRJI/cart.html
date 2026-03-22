@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Coș de Cumpărături</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h1>Coș de Cumpărături</h1>
+    <a href="dashboard.html">← Înapoi la Dashboard</a>
+
+    <hr>
+
+    <h2>Adaugă produs</h2>
+    <select id="productSelect"></select>
+    <input type="number" id="quantity" min="1" max="10" value="1">
+    <button onclick="addToCart()">Adaugă în Coș</button>
+
+    <hr>
+
+    <h2>Coșul tău</h2>
+    <table id="cartTable"></table>
+    <h3 id="total"></h3>
+    <button onclick="clearCart()">Golește Coșul</button>
+    <script src="js/storage.js"></script>
+
+    <script>
+        let session = StorageManager.getSession("session");
+
+        if (!session) {
+            window.location.href = "login.html";
+        }
+
+        const products = {
+            laptop: { name: 'Laptop', price: 2500 },
+            telefon: { name: 'Telefon', price: 1200 },
+            tableta: { name: 'Tabletă', price: 800 },
+            casti: { name: 'Căști', price: 150 }
+        };
+
+        let select = document.getElementById("productSelect");
+
+        for (let key in products) {
+            select.innerHTML += `<option value="${key}">
+            ${products[key].name} (${products[key].price} lei)
+            </option>`;
+        }
+
+        let cart = StorageManager.getSession("cart") || {};
+
+        function addToCart() {
+            let product = select.value;
+            let qty = parseInt(document.getElementById("quantity").value);
+
+            if (qty < 1 || qty > 10) return;
+
+            cart[product] = (cart[product] || 0) + qty;
+
+            StorageManager.setSession("cart", cart);
+
+            renderCart();
+        }
+
+        function renderCart() {
+            let table = document.getElementById("cartTable");
+
+            table.innerHTML =
+                `<tr>
+                <th>Produs</th>
+                <th>Cantitate</th>
+                <th>Preț</th>
+                <th>Șterge</th>
+                </tr>`;
+
+            let total = 0;
+
+            for (let key in cart) {
+                let qty = cart[key];
+                let price = products[key].price * qty;
+
+                total += price;
+
+                table.innerHTML +=
+                    `<tr>
+                    <td>${products[key].name}</td>
+                    <td>${qty}</td>
+                    <td>${price} lei</td>
+                    <td>
+                        <button onclick="removeItem('${key}')">X</button>
+                    </td>
+                    </tr>`;
+            }
+
+            document.getElementById("total").innerText =
+                "TOTAL: " + total + " lei";
+        }
+
+        function removeItem(product) {
+            delete cart[product];
+
+            StorageManager.setSession("cart", cart);
+
+            renderCart();
+        }
+
+        function clearCart() {
+            cart = {};
+            StorageManager.setSession("cart", cart);
+            renderCart();
+        }
+
+        renderCart();
+
+    </script>
+
+</body>
+
+</html>
