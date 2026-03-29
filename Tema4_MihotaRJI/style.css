@@ -1,0 +1,86 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Segoe UI", sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #1e1e2f, #2c2c54);
+}
+
+.calculator {
+    width: 280px;
+    padding: 20px;
+    border-radius: 20px;
+    background: #2a2a40;
+    box-shadow: 10px 10px 20px #1a1a2e, -10px -10px 20px #3a3a60;
+}
+
+#display {
+    background: #111;
+    color: #0f0;
+    padding: 15px;
+    font-size: 24px;
+    border-radius: 10px;
+    text-align: right;
+    margin-bottom: 15px;
+    overflow-x: auto;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+button {
+    padding: 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background: #2a2a40;
+    color: white;
+    box-shadow: 5px 5px 10px #1a1a2e, -5px -5px 10px #3a3a60;
+    transition: all 0.2s ease;
+}
+
+button:active {
+    transform: scale(0.95);
+    box-shadow: inset 3px 3px 5px #1a1a2e,
+                inset -3px -3px 5px #3a3a60;
+}
+
+button:hover {
+    background: #3a3a60;
+}
+
+button[data-op] {
+    background: #ff9500;
+    color: white;
+}
+
+button[data-op]:hover {
+    background: #e08900;
+}
+
+#equals {
+    background: #28a745;
+}
+
+#equals:hover {
+    background: #218838;
+}
+
+#clear {
+    background: #dc3545;
+}
+
+#clear:hover {
+    background: #b52a37;
+}
